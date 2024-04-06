@@ -1,5 +1,7 @@
 <?php
 
+namespace app\library;
+
 class Cart 
 {
     public function add(Product $product) 

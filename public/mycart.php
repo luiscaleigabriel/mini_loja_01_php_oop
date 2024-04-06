@@ -1,7 +1,9 @@
 <?php
 
-require 'Cart.php';
-require 'Product.php';
+use app\library\Product;
+use app\library\Cart;
+
+require '../vendor/autoload.php';
 
 session_start();
 
@@ -23,7 +25,12 @@ if(array_key_exists('id', $_GET)) {
     <title>Carrinho</title>
 </head>
 <body>
-<a href="index.php">Back</a>
+    <a href="index.php">Back</a>
+
+    <?php if(!count($_SESSION['cart']['products']) > 0): ?>
+        <h1>Nenhum produto no carrinho</h1>
+    <?php endif; ?>
+
     <ul>
         <?php foreach($productInCart as $product): ?>
             <li>
@@ -40,6 +47,10 @@ if(array_key_exists('id', $_GET)) {
     </ul>
 
     <h1>Valor Total: R$<?= number_format(($_SESSION['cart']['total']), 2, ',', '.') ?></h1>
+
+    <hr>
+
+    <a href="checkout.php">Chekout</a>
 
 </body>
 </html>

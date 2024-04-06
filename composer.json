@@ -1,0 +1,17 @@
+{
+    "name": "luisgabriel/stripe",
+    "autoload": {
+        "psr-4": {
+            "app\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luís Silvério Calei Gabriel",
+            "email": "luiscaleigabriel@gmail.com"
+        }
+    ],
+    "require": {
+        "stripe/stripe-php": "^13.17"
+    }
+}
