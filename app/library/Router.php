@@ -14,10 +14,10 @@ class Router
     public function init() 
     {
         foreach($this->routes as $route){
-            if($route->macth($route)){
-                return new Controller($route)->call($route); 
-            }
+            if($route->macth()) return (new Controller)->call($route);
         }
+
+        return (new Controller)->call(new Route('/404', 'GET', 'NotFoundController:index'));
     }
 
 }
