@@ -38,6 +38,11 @@ class Cart
         $_SESSION['cart']['total'] += $product->getPrice() * $product->getQuantity();
     }
 
+    public function getTotal() 
+    {
+        return $_SESSION['cart']['total'] ?? 0;
+    }
+
     public function getCart() {
 
         if (!isset($_SESSION['cart']['products'])) {
