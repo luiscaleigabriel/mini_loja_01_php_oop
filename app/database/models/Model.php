@@ -31,4 +31,23 @@ abstract class Model
 
     }
 
+    public static function where(string $field, string $value, string $fields = '*') 
+    {
+        try {
+            Transaction::open();
+
+            $conn = Transaction::getConnection();
+            $tableName = static::$table;
+
+            $query = $conn->prepare("select {$fields} from {$tableName} where {$field} = :{$field}");
+            $query->execute([$field => $value]);
+
+            return $query->fetchObject(static::class);
+
+            Transaction::close();
+        } catch (PDOException $e) {
+            Transaction::rollback();
+        }
+    }
+
 }
