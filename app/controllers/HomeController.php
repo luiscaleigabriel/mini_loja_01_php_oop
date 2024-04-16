@@ -12,8 +12,6 @@ class HomeController
     {
         $products = Product::all('id, name, slug, price, image');
 
-        var_dump(CartInfo::getCart());
-
         View::render('home', ['products' => $products]);
     }
 }

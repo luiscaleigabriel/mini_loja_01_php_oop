@@ -23,7 +23,7 @@ class View
             throw new \Exception("View {$view} does not exist");
         }
 
-        self::addInstances('cart', new CartInfo);
+        self::addInstances('cart', CartInfo::class);
 
         $templates = new Engine($filePath);
         $templates->addData(['instances' => self::$instance]);

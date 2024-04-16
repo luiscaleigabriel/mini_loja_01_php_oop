@@ -4,7 +4,7 @@ namespace app\library;
 
 class Route 
 {
-    private string $uri;
+    public string $uri;
     private string $request;
     public string $controller;
 

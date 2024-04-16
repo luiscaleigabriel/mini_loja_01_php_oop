@@ -6,6 +6,8 @@ require '../vendor/autoload.php';
 
 session_start();
 
+var_dump($_SESSION['redirect']);
+
 try {
     $route = new Router;
     $route->add('/', 'GET', 'HomeController:index');

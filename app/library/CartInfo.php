@@ -29,13 +29,9 @@ class CartInfo
         return 0;
     }
 
-    public static function getTotalProductsIn(Product $product) 
+    public static function getTotalProductsInCart() 
     {
-        if (isset($_SESSION['cart']['products']) && array_key_exists($product->slug, $_SESSION['cart']['products'])) {
-            return $_SESSION['cart']['products'][$product->slug]->getQuantity();
-        }
-
-        return 0;
+        return count(self::getCart());
     }
 
 }
