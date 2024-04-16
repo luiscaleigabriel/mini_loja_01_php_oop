@@ -8,8 +8,8 @@ class Cart
     {
         $inCart = false;
         $this->setTotal($product);
-        if(count($this->getCart()) > 0) {
-            foreach($this->getCart() as $productInCart) {
+        if(count(CartInfo::getCart()) > 0) {
+            foreach(CartInfo::getCart() as $productInCart) {
                 if($productInCart->getId() === $product->getId()) {
                     $quantity = $productInCart->getQuantity() + $product->getQuantity();
                     $productInCart->setQuantity($quantity);
@@ -26,7 +26,7 @@ class Cart
 
     private function setProductInCart($product) 
     {
-        $_SESSION['cart']['products'][] = $product; 
+        $_SESSION['cart']['products'][$product->getSlug()] = $product; 
     }
 
     private function setTotal(Product $product) 
@@ -38,24 +38,10 @@ class Cart
         $_SESSION['cart']['total'] += $product->getPrice() * $product->getQuantity();
     }
 
-    public function getTotal() 
-    {
-        return $_SESSION['cart']['total'] ?? 0;
-    }
-
-    public function getCart() {
-
-        if (!isset($_SESSION['cart']['products'])) {
-            $_SESSION['cart']['products'] = [];
-        }
-
-        return $_SESSION['cart']['products'];
-    }
-
     public function remove(int $id) 
     {
         if(isset($_SESSION['cart']['products'])) {
-            foreach($this->getCart() as $index => $product) {
+            foreach(CartInfo::getCart() as $index => $product) {
                 if($product->getId() === $id) {
                     $_SESSION['cart']['total'] -= ($product->getPrice() * $product->getQuantity());
                     unset($_SESSION['cart']['products'][$index]);

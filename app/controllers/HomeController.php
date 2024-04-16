@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\database\models\Product;
-use app\library\Cart;
+use app\library\CartInfo;
 use app\library\View;
 
 class HomeController 
@@ -12,8 +12,7 @@ class HomeController
     {
         $products = Product::all('id, name, slug, price, image');
 
-        $cart = new Cart;
-        var_dump($cart->getCart());
+        var_dump(CartInfo::getCart());
 
         View::render('home', ['products' => $products]);
     }
